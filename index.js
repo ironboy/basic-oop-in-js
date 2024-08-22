@@ -1,16 +1,23 @@
 import Person from './classes/Person.js';
+import Student from './classes/Student.js';
 import Pet from './classes/Pet.js';
+
+function betterTypeOf(value) {
+    if (value === undefined) { return 'undefined' };
+    if (value === null) { return 'null'; }
+    return value.constructor.name;
+}
 
 // create an array with some instances of the Person classes
 const somePersons = [
     new Person('Gabriel', 28),
     new Person('Thomas', 51),
-    new Person('Mikaela', 35),
+    new Student('Mikaela', 35, 'Frontendutvecklare'),
     new Person()
 ];
 
 for (let person of somePersons) {
-    // console.log(person.sayHi());
+    console.log(`A ${betterTypeOf(person)} says hi`, person.sayHi());
 }
 
 let gabriel = somePersons[0];
@@ -49,3 +56,14 @@ for (let pet of thePets) {
 
 console.log(mikaela.tellMeAboutYourPets());
 console.log(gabriel.tellMeAboutYourPets());
+
+// Mikaela is the only Person that is a Student
+// let her tell you about herself and her education
+console.log(mikaela.tellMeAboutYourEducation());
+
+// instanceof 
+// check if an object is an instance of class
+console.log('Is Mikeala a person?', mikaela instanceof Person);
+console.log('Is Mikeala a student?', mikaela instanceof Student);
+console.log('Is Gabriel a person?', gabriel instanceof Person);
+console.log('Is Gabriel a student?', gabriel instanceof Student);
